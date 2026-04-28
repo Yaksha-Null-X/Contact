@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Collections | Lethal Crimson</title>
+  <meta
+    name="description"
+    content="Wallpaper and image collection by Innomine, with detailed descriptions and curated visual cards."
+  />
+
+  <link rel="preload" href="../assets/images/cover-banner.webp" as="image" type="image/webp" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/contact/">Contact</a>
+          <a href="/collections/" class="active">Collections</a>
+          <a href="/downloads/">Downloads</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="collections-page">
+      <section class="collection-hero reveal">
+        <picture class="collection-hero-bg">
+          <source srcset="../assets/images/cover-banner.webp" type="image/webp" />
+          <img
+            src="../assets/images/cover-banner.jpg"
+            alt="Collection cover"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+
+        <div class="collection-hero-content">
+          <p class="section-tag">Visual Archive</p>
+          <h1>Collections</h1>
+          <p>
+            Curated wallpapers and image sets with detailed descriptions.
+            Replace the sample cards with your own files whenever you want.
+          </p>
+        </div>
+      </section>
+
+      <section class="collection-section reveal" aria-labelledby="wallpapers-title">
+        <div class="section-heading collection-heading">
+          <div>
+            <h2 id="wallpapers-title">Wallpaper Gallery</h2>
+            <p class="collection-intro">
+              Add your wallpapers inside <code>assets/collections/</code> and create one card per image.
+            </p>
+          </div>
+          <span class="section-note">Cards ready for your images</span>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <a href="../assets/images/cover-banner.jpg" target="_blank" rel="noopener noreferrer" class="gallery-media">
+              <picture>
+                <source srcset="../assets/images/cover-banner.webp" type="image/webp" />
+                <img src="../assets/images/cover-banner.jpg" alt="Night skyline wallpaper sample" loading="lazy" decoding="async" />
+              </picture>
+            </a>
+
+            <div class="gallery-body">
+              <span class="gallery-kicker">Sample Wallpaper</span>
+              <h3>Night Skyline</h3>
+              <p>
+                Dark urban atmosphere with cold blue tones and subtle red accents.
+                Use this sample as a model for future wallpaper descriptions.
+              </p>
+
+              <dl class="gallery-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Wallpaper</dd>
+                </div>
+                <div>
+                  <dt>Palette</dt>
+                  <dd>Dark / Cyan / Red</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Sample</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="gallery-card empty-card">
+            <div class="gallery-media placeholder-media">
+              <span>Next Image</span>
+            </div>
+
+            <div class="gallery-body">
+              <span class="gallery-kicker">Empty Slot</span>
+              <h3>Your Wallpaper Title</h3>
+              <p>
+                Replace this placeholder with your own image, title, detailed description,
+                palette notes, resolution, mood or usage recommendations.
+              </p>
+
+              <dl class="gallery-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Wallpaper</dd>
+                </div>
+                <div>
+                  <dt>Resolution</dt>
+                  <dd>Pending</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Draft</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="gallery-card empty-card">
+            <div class="gallery-media placeholder-media">
+              <span>New Card</span>
+            </div>
+
+            <div class="gallery-body">
+              <span class="gallery-kicker">Template</span>
+              <h3>Collection Item</h3>
+              <p>
+                Duplicate this card when you want to publish another wallpaper
+                or visual asset with a clean description.
+              </p>
+
+              <dl class="gallery-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Image</dd>
+                </div>
+                <div>
+                  <dt>Theme</dt>
+                  <dd>Custom</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Ready</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© 2026 Innomine. Visual collection archive.</p>
+
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/contact/">Contact</a>
+          <a href="/collections/">Collections</a>
+          <a href="/downloads/">Downloads</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../assets/site.js" defer></script>
+</body>
+</html>
