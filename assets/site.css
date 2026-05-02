@@ -1539,3 +1539,39 @@ h1{
     transform: scale(1.07);
   }
 }
+/* Fuente global con apariencia matemática/elegante */
+body {
+  font-family:
+    "Cambria Math",
+    "STIX Two Math",
+    "Times New Roman",
+    serif !important;
+}
+
+/* Mantiene los títulos con más fuerza visual */
+h1,
+h2,
+h3,
+.main-nav a,
+.link-title,
+.section-tag,
+.avatar-speech {
+  font-family:
+    "Cambria Math",
+    "STIX Two Math",
+    "Times New Roman",
+    serif !important;
+}
+
+/* Ajuste especial para YAKSHA y títulos grandes */
+h1 {
+  letter-spacing: 0.035em !important;
+  word-spacing: 0.04em !important;
+  text-indent: 0.035em;
+}
+
+/* Ajuste para el globo LETHAL CRIMSON */
+.avatar-speech {
+  letter-spacing: 0.08em !important;
+  font-weight: 700 !important;
+}
