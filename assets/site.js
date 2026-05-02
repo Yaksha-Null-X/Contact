@@ -190,3 +190,52 @@ selectableCards.forEach((card) => {
     card.classList.remove("clicked");
   });
 });
+// Header con tope: fijo al inicio, bloqueado antes del avatar.
+(() => {
+  const header = document.querySelector(".site-header");
+  const contactPage = document.querySelector(".contact-page");
+  const contactTarget =
+    document.querySelector(".profile-avatar") ||
+    document.querySelector(".contact-card");
+
+  if (!header || !contactPage || !contactTarget) return;
+
+  let ticking = false;
+
+  const updateHeaderLimit = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const headerHeight = header.offsetHeight || 72;
+
+    // Más alto = el header se bloquea más arriba.
+    const safeGap = 64;
+
+    const targetTopPage =
+      contactTarget.getBoundingClientRect().top + scrollY;
+
+    const stopPoint = targetTopPage - headerHeight - safeGap;
+
+    if (scrollY >= stopPoint) {
+      header.classList.add("header-park-contact");
+      header.classList.remove("header-clear-contact");
+      header.style.setProperty("--header-park-top", `${stopPoint}px`);
+    } else {
+      header.classList.remove("header-park-contact");
+      header.classList.remove("header-clear-contact");
+      header.style.removeProperty("--header-park-top");
+    }
+
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderLimit);
+      ticking = true;
+    }
+  };
+
+  updateHeaderLimit();
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+})();
