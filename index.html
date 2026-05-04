@@ -1,17 +1,118 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Lethal Crimson | Home</title><meta name="description" content="Personal web space for Innomine."/><link rel="preload" href="assets/images/cover-banner.webp" as="image" type="image/webp"/><link rel="stylesheet" href="assets/site.css"/></head><body><div class="site-shell"><header class="site-header"><div class="header-inner"><nav class="main-nav" aria-label="Main navigation">
-          <a href="/" class="active">Home</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lethal Crimson | Home</title>
+  <meta name="description" content="Lethal Crimson official home page." />
+  <link rel="preload" as="image" href="assets/images/cover-banner.webp" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Innomine home">INNOMINE</a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="/" class="active" aria-current="page">Home</a>
           <a href="/contact/">Contact</a>
           <a href="/collections/">Collections</a>
           <a href="/downloads/">Downloads</a>
-        </nav></div></header><main class="home-page"><section class="home-hero reveal"><picture class="home-bg"><source srcset="assets/images/cover-banner.webp" type="image/webp"/><img src="assets/images/cover-banner.jpg" alt="Night skyline cover" fetchpriority="high" decoding="async"/></picture><div class="home-content"><p class="section-tag">Personal Domain</p><h1>YAKSHA</h1><p>La balanza del universo siempre se ha inclinado hacia el lado oscuro. La vida, la materia y la luz son estados limitados, difíciles y costosos de mantener; no son sostenibles por sí mismos. En cambio, la muerte, la nada y la oscuridad son el estado natural de las cosas, y siempre ha sido así.
+        </nav>
+      </div>
+    </header>
 
-Todo lo que sube tiene que bajar; siempre te dicen eso, pero nadie te dice que toda alteración vuelve a su estado original, tarde o temprano. A eso me refiero con el “lado oscuro”. A esa visión y a esa manera de ver las cosas la llamé 𝐋𝐄𝐓𝐇𝐀𝐋 𝐂𝐑𝐈𝐌𝐒𝐎𝐍.
+    <main class="home-page">
+      <section class="home-hero reveal lc-home-hero" aria-labelledby="home-title">
+        <div class="home-bg" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/cover-banner.webp" type="image/webp" />
+            <img src="assets/images/cover-banner.jpg" alt="Night skyline cover" />
+          </picture>
+        </div>
 
-Crimson, porque mi color favorito es el rojo, y en español se traduce como carmesí: un tono de ese mismo color. Para mí representa un atardecer rojizo, vibrante pero opaco, que te hace entender lo hermoso que puede ser el brillo sin llegar a deslumbrarte los ojos, tal como lo representa la imagen y mi portada oficial.
+        <div class="home-content lc-home-content">
+          <p class="section-tag">INNOME</p>
+          <h1 id="home-title">YAKSHA</h1>
 
-Lethal, porque ese gran sol rojo, hermoso y satisfactorio, es letal. También representa el estado natural de las cosas: el fin, la paz, la quietud, la nada. Un brillo que no opaca, pero que marca el punto de inicio donde todo colapsa; el destino inevitable, un agujero negro. Al final, solo somos una partícula esperando ser absorbida por ese precioso sol hacia nuestro final.</p><div class="home-actions"><a href="/contact/" class="action-button">Open Contact</a><a href="/downloads/" class="action-button secondary">Downloads</a></div></div></section></main><footer class="site-footer"><div class="footer-inner"><p>© 2026 Innomine.</p><div class="footer-links">
+          <p class="lc-home-preview">
+            La balanza del universo siempre se ha inclinado hacia el lado oscuro. La vida, la materia y la luz son estados limitados, difíciles y costosos de mantener. A esa visión y a esa manera de ver las cosas la llamé <strong>LETHAL CRIMSON</strong>.
+          </p>
+
+          <div class="home-actions lc-home-actions">
+            <button class="action-button lc-read-more-button" type="button" data-open-lethal>
+              <span class="link-title">Expand</span>
+            </button>
+
+            <button class="action-button lc-home-reveal-button" type="button" data-home-reveal>
+              <span class="link-title">Reveal</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="lc-reveal-stage" aria-hidden="true">
+          <div class="lc-reveal-title" data-reveal-title></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© 2026 Innomine.</p>
+        <div class="footer-links">
           <a href="/">Home</a>
           <a href="/contact/">Contact</a>
           <a href="/collections/">Collections</a>
           <a href="/downloads/">Downloads</a>
-        </div></div></footer></div><script src="assets/site.js" defer></script></body></html>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <section class="lethal-modal" data-lethal-modal aria-hidden="true">
+    <div class="lethal-modal-bg" aria-hidden="true">
+      <picture>
+        <source srcset="assets/images/cover-banner.webp" type="image/webp" />
+        <img src="assets/images/cover-banner.jpg" alt="" />
+      </picture>
+    </div>
+
+
+    <button class="lethal-modal-backdrop" type="button" aria-label="Cerrar lectura" data-close-lethal></button>
+
+    <article class="lethal-modal-card" role="dialog" aria-modal="true" aria-labelledby="lethal-title">
+      <button class="lethal-modal-close" type="button" aria-label="Cerrar lectura" data-close-lethal>×</button>
+
+      <p class="section-tag">My vision</p>
+      <h2 id="lethal-title">LETHAL CRIMSON</h2>
+
+      <div class="lethal-modal-text">
+        <p>
+          La balanza del universo siempre se ha inclinado hacia el lado oscuro. La vida, la materia y la luz son estados limitados, difíciles y costosos de mantener; no son sostenibles por sí mismos. En cambio, la muerte, la nada y la oscuridad son el estado natural de las cosas, y siempre ha sido así.
+        </p>
+
+        <p>
+          Todo lo que sube tiene que bajar; siempre te dicen eso, pero nadie te dice que toda alteración vuelve a su estado original, tarde o temprano. A eso me refiero con el “lado oscuro”. A esa visión y a esa manera de ver las cosas la llamé <strong>LETHAL CRIMSON</strong>.
+        </p>
+
+        <p>
+          Crimson, porque mi color favorito es el rojo, y en español se traduce como carmesí: un tono de ese mismo color. Para mí representa un atardecer rojizo, vibrante pero opaco, que te hace entender lo hermoso que puede ser el brillo sin llegar a deslumbrarte los ojos, tal como lo representa la imagen y mi portada oficial.
+        </p>
+
+        <p>
+          Lethal, porque ese gran sol rojo, hermoso y satisfactorio, es letal. También representa el estado natural de las cosas: el fin, la paz, la quietud, la nada. Un brillo que no opaca, pero que marca el punto de inicio donde todo colapsa; el destino inevitable, un agujero negro.
+        </p>
+
+        <p>
+          Al final, solo somos una partícula esperando ser absorbida por ese precioso sol hacia nuestro final.
+        </p>
+
+        <p class="lethal-signature">by Yaksha</p>
+      </div>
+
+    </article>
+  </section>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

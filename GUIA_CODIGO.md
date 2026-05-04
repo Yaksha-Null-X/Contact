@@ -26,13 +26,42 @@ hover con barras diagonales
 tarjetas animadas
 avatar flotante
 galería tipo cards
+Home cinematográfico
+modal de lectura Lethal Crimson
+secuencia Reveal
 ```
 
 La optimización no se hizo eliminando efectos, sino usando técnicas más eficientes.
 
 ---
 
-## 2. Regla principal de rendimiento
+## 2. Archivos principales
+
+La estructura importante es:
+
+```txt
+index.html
+assets/site.css
+assets/site.js
+```
+
+No uses archivos antiguos como:
+
+```txt
+style.css
+script.js
+```
+
+La versión actual trabaja con:
+
+```txt
+assets/site.css
+assets/site.js
+```
+
+---
+
+## 3. Regla principal de rendimiento
 
 Las animaciones rápidas y fluidas deben usar principalmente:
 
@@ -58,9 +87,11 @@ margin
 padding
 ```
 
+En la animación **Reveal** puede haber cambios de tamaño o distribución del contenedor, pero la mayor parte del efecto visual debe apoyarse en transiciones suaves, opacidad y transformaciones.
+
 ---
 
-## 3. Estructura HTML
+## 4. Estructura HTML general
 
 Cada página usa:
 
@@ -72,7 +103,13 @@ Cada página usa:
 
 ### Header
 
-Contiene la navegación:
+Contiene la marca y la navegación:
+
+```html
+<header class="site-header">
+```
+
+La navegación está en:
 
 ```html
 <nav class="main-nav">
@@ -82,13 +119,217 @@ Contiene la navegación:
 
 Contiene el contenido específico de cada página.
 
+En el Home, el contenido principal está dentro de:
+
+```html
+<section class="home-hero">
+```
+
 ### Footer
 
 Contiene enlaces secundarios y créditos.
 
 ---
 
-## 4. Cómo funciona Collections
+## 5. Cómo funciona el Home
+
+Archivo:
+
+```txt
+index.html
+```
+
+El Home muestra:
+
+```txt
+fondo con imagen de portada
+nombre YAKSHA
+vista corta del texto
+botón Expand
+botón Reveal
+```
+
+La idea es que el texto completo no quede pegado permanentemente en la página principal.
+
+El Home se mantiene más limpio y visual.
+
+---
+
+## 6. Botón Expand
+
+El botón **Expand** abre la lectura completa de **Lethal Crimson**.
+
+En HTML se identifica por un atributo parecido a:
+
+```html
+data-open-lethal
+```
+
+La ventana de lectura está en:
+
+```html
+<section class="lethal-modal">
+```
+
+El texto completo está en:
+
+```html
+<div class="lethal-modal-text">
+```
+
+El cierre del modal se maneja con botones que usan un atributo parecido a:
+
+```html
+data-close-lethal
+```
+
+---
+
+## 7. Firma del texto
+
+Al final de la lectura se incluye una firma:
+
+```txt
+by Yaksha
+```
+
+Normalmente debe ir al final del bloque de lectura, alineada hacia la derecha.
+
+Sirve como cierre visual y autoral del manifiesto.
+
+---
+
+## 8. Botón Reveal
+
+El botón **Reveal** activa la escena cinematográfica del Home.
+
+No abre una página nueva.
+No abre un modal.
+No toma pantalla completa real.
+
+Lo que hace es transformar temporalmente el contenedor principal del Home.
+
+Durante la animación:
+
+```txt
+1. Se bloquea el scroll.
+2. Header y footer se ocultan o se apartan suavemente.
+3. Los elementos internos del hero desaparecen con fade out.
+4. El contenedor se agranda dentro del espacio disponible del body.
+5. El fondo se aprecia más.
+6. Aparecen frases cortas sobre una franja sutil.
+7. La escena espera unos segundos.
+8. Todo vuelve suavemente al estado normal.
+```
+
+---
+
+## 9. Frases de la secuencia Reveal
+
+La escena usa frases breves como:
+
+```txt
+¿Lo ves?
+ES...
+Es a lo que yo llamo
+Lethal Crimson
+```
+
+Estas frases deben editarse en:
+
+```txt
+assets/site.js
+```
+
+Busca la parte donde se define o cambia el texto de la escena Reveal.
+
+---
+
+## 10. Franja del texto Reveal
+
+La animación no debe oscurecer toda la pantalla.
+
+Solo debe aparecer una franja o renglón detrás del texto para mejorar la lectura.
+
+Ese estilo se controla en:
+
+```txt
+assets/site.css
+```
+
+Busca clases relacionadas con:
+
+```txt
+reveal
+cinematic
+caption
+line
+stage
+```
+
+El objetivo visual es:
+
+```txt
+texto claro
+fondo visible
+atenuación horizontal sutil
+sin cubrir toda la página
+```
+
+---
+
+## 11. Header y footer durante Reveal
+
+Durante Reveal, el header y el footer pueden ocultarse temporalmente.
+
+La intención no es capturar toda la ventana, sino permitir que el contenedor crezca de forma proporcional.
+
+El comportamiento correcto es:
+
+```txt
+header se aparta suavemente
+footer se aparta suavemente
+hero se expande dentro del body
+al terminar, todo vuelve a su sitio
+```
+
+Esto evita que la animación se vea torcida o descentrada.
+
+---
+
+## 12. Fondo del Home
+
+El fondo del hero usa la imagen:
+
+```txt
+assets/images/cover-banner.webp
+assets/images/cover-banner.jpg
+```
+
+En HTML se carga con:
+
+```html
+<picture>
+  <source srcset="assets/images/cover-banner.webp" type="image/webp" />
+  <img src="assets/images/cover-banner.jpg" alt="Night skyline cover" />
+</picture>
+```
+
+Para que el fondo rellene el contenedor, en CSS debe mantenerse una regla similar a:
+
+```css
+.home-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+```
+
+`object-fit: cover` permite que la imagen cubra todo el contenedor sin dejar bordes vacíos.
+
+---
+
+## 13. Cómo funciona Collections
 
 Archivo:
 
@@ -122,7 +363,7 @@ El texto está en:
 
 ---
 
-## 5. Cómo agregar una imagen a Collections
+## 14. Cómo agregar una imagen a Collections
 
 Primero sube tu imagen a:
 
@@ -172,7 +413,7 @@ Ejemplo:
 
 ---
 
-## 6. Cómo funciona la animación de las tarjetas
+## 15. Cómo funciona la animación de las tarjetas
 
 La tarjeta tiene transición:
 
@@ -197,7 +438,7 @@ Eso hace que la tarjeta se levante suavemente.
 
 ---
 
-## 7. Cómo funciona el zoom de imagen en galería
+## 16. Cómo funciona el zoom de imagen en galería
 
 ```css
 .gallery-card:hover .gallery-media img {
@@ -209,7 +450,7 @@ La imagen crece un poco al pasar el mouse.
 
 ---
 
-## 8. Cómo funciona el glow animado del panel
+## 17. Cómo funciona el glow animado del panel
 
 Algunos paneles usan:
 
@@ -236,7 +477,7 @@ Esto crea un brillo suave y profesional.
 
 ---
 
-## 9. Cómo funciona el hover rojo diagonal
+## 18. Cómo funciona el hover rojo diagonal
 
 El efecto usa:
 
@@ -268,7 +509,7 @@ La animación:
 
 ---
 
-## 10. Cómo funciona el responsive
+## 19. Cómo funciona el responsive
 
 La galería cambia así:
 
@@ -294,9 +535,11 @@ CSS:
 }
 ```
 
+El Home también usa medidas flexibles para que la escena Reveal no se rompa en pantallas pequeñas.
+
 ---
 
-## 11. Por qué se usa `loading="lazy"`
+## 20. Por qué se usa `loading="lazy"`
 
 En imágenes de galería:
 
@@ -310,7 +553,7 @@ Carga primero lo visible y luego el resto.
 
 ---
 
-## 12. Cómo cambiar colores
+## 21. Cómo cambiar colores
 
 Edita:
 
@@ -329,9 +572,15 @@ Variables principales:
 
 ---
 
-## 13. Cómo cambiar velocidad de animaciones
+## 22. Cómo cambiar velocidad de animaciones
 
-Busca:
+Busca en:
+
+```txt
+assets/site.css
+```
+
+Variables o reglas relacionadas con duración:
 
 ```css
 --motion-fast: 520ms;
@@ -348,9 +597,17 @@ Ejemplo:
 
 Mayor valor = más lento.
 
+Para la secuencia Reveal, algunas pausas también pueden estar controladas desde:
+
+```txt
+assets/site.js
+```
+
+Ahí se ajustan esperas entre frases y duración general de la escena.
+
 ---
 
-## 14. JavaScript
+## 23. JavaScript
 
 Archivo:
 
@@ -358,13 +615,22 @@ Archivo:
 assets/site.js
 ```
 
-Solo agrega una pequeña reacción al presionar botones y tarjetas.
+Este archivo controla:
+
+```txt
+pequeñas reacciones de botones
+doble clic en enlaces especiales si aplica
+apertura y cierre del modal Lethal Crimson
+bloqueo temporal de scroll durante Reveal
+secuencia de frases de Reveal
+restauración del Home al terminar la escena
+```
 
 No controla la galería ni carga datos dinámicos.
 
 ---
 
-## 15. Regla para seguir aprendiendo
+## 24. Regla para seguir aprendiendo
 
 Cuando quieras cambiar contenido:
 
@@ -382,4 +648,13 @@ Cuando quieras cambiar interacción:
 
 ```txt
 JS
+```
+
+Para el Home actual:
+
+```txt
+Texto corto del Home → index.html
+Texto completo de lectura → index.html
+Aspecto visual de Expand/Reveal → assets/site.css
+Orden y tiempos de Reveal → assets/site.js
 ```

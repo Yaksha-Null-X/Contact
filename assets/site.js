@@ -239,3 +239,180 @@ selectableCards.forEach((card) => {
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
 })();
+
+// LETHAL CRIMSON: abre el texto completo desde el Home sin alterar el doble click de los links.
+(() => {
+  const modal = document.querySelector("[data-lethal-modal]");
+  const openButton = document.querySelector("[data-open-lethal]");
+  const closeButtons = document.querySelectorAll("[data-close-lethal]");
+  const cinemaButton = document.querySelector("[data-lethal-cinema]");
+
+  if (!modal || !openButton) return;
+
+  let cinemaTimer = null;
+
+  const clearCinema = () => {
+    if (cinemaTimer) {
+      window.clearTimeout(cinemaTimer);
+      cinemaTimer = null;
+    }
+
+    modal.classList.remove("is-cinematic");
+    document.body.classList.remove("lethal-cinematic-active");
+  };
+
+  const openModal = () => {
+    clearCinema();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lethal-modal-open");
+  };
+
+  const closeModal = ({ restoreFocus = true } = {}) => {
+    clearCinema();
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lethal-modal-open");
+
+    if (restoreFocus) {
+      openButton.focus({ preventScroll: true });
+    }
+  };
+
+  const playCinema = () => {
+    if (!modal.classList.contains("is-open")) return;
+
+    clearCinema();
+    modal.classList.add("is-cinematic");
+    document.body.classList.add("lethal-cinematic-active");
+
+    cinemaTimer = window.setTimeout(() => {
+      closeModal({ restoreFocus: false });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 17200);
+  };
+
+  openButton.addEventListener("click", openModal);
+  cinemaButton?.addEventListener("click", playCinema);
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => closeModal());
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+})();
+
+// LETHAL CRIMSON: Reveal externo en el Home, contenido en el body y con escena por fases.
+(() => {
+  const hero = document.querySelector(".lc-home-hero");
+  const revealButton = document.querySelector("[data-home-reveal]");
+  const expandButton = document.querySelector("[data-open-lethal]");
+  const revealTitle = document.querySelector("[data-reveal-title]");
+
+  if (!hero || !revealButton || !revealTitle) return;
+
+  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+  let isPlaying = false;
+  let cancelled = false;
+
+  const clearTimersState = () => {
+    hero.classList.remove(
+      "lc-reveal-running",
+      "lc-reveal-fading",
+      "lc-reveal-expanded",
+      "lc-reveal-message-in",
+      "lc-reveal-message-out"
+    );
+    document.body.classList.remove("lc-reveal-active");
+    revealTitle.textContent = "";
+    revealButton.disabled = false;
+    if (expandButton) expandButton.disabled = false;
+    isPlaying = false;
+    cancelled = false;
+  };
+
+  const centerHero = async () => {
+    hero.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
+    await wait(520);
+  };
+
+  const showRevealMessage = async (message, holdMs = 1500, variant = "normal") => {
+    if (cancelled) return;
+
+    revealTitle.textContent = message;
+    revealTitle.dataset.variant = variant;
+
+    hero.classList.remove("lc-reveal-message-out");
+    hero.classList.add("lc-reveal-message-in");
+    await wait(980);
+
+    if (cancelled) return;
+    await wait(holdMs);
+
+    if (cancelled) return;
+    hero.classList.remove("lc-reveal-message-in");
+    hero.classList.add("lc-reveal-message-out");
+    await wait(920);
+
+    hero.classList.remove("lc-reveal-message-out");
+    revealTitle.textContent = "";
+  };
+
+  const playReveal = async () => {
+    if (isPlaying) return;
+
+    isPlaying = true;
+    cancelled = false;
+    revealButton.disabled = true;
+    if (expandButton) expandButton.disabled = true;
+
+    await centerHero();
+
+    document.body.classList.add("lc-reveal-active");
+    hero.classList.add("lc-reveal-running", "lc-reveal-fading", "lc-reveal-expanded");
+
+    // Fade out de elementos + expansión del contenedor al mismo tiempo.
+    await wait(5600);
+
+    // Pausa corta para apreciar el fondo ya expandido.
+    await wait(1800);
+
+    await showRevealMessage("¿Lo ves?", 2200, "question");
+    if (cancelled) return;
+
+    await wait(950);
+    await showRevealMessage("ES...", 2300, "small");
+    if (cancelled) return;
+
+    // Tiempo limpio para mirar el fondo antes de la revelación.
+    await wait(3600);
+
+    await showRevealMessage("Es a lo que yo llamo", 1500, "phrase");
+    if (cancelled) return;
+
+    await showRevealMessage("Lethal Crimson", 5000, "final");
+    if (cancelled) return;
+
+    // Regreso suave al estado normal.
+    hero.classList.remove("lc-reveal-expanded");
+    await wait(4300);
+
+    hero.classList.remove("lc-reveal-fading");
+    await wait(1500);
+
+    clearTimersState();
+  };
+
+  revealButton.addEventListener("click", playReveal);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isPlaying) {
+      cancelled = true;
+      clearTimersState();
+    }
+  });
+})();

@@ -2,7 +2,7 @@
 
 Static personal website for `innomine.pw`, optimized for GitHub Pages.
 
-This version keeps the visual identity strong: dark theme, red/cyan glow, shadows, fast hover animations, profile image, contact page, downloads page and a new wallpaper/image collection gallery.
+This version keeps the visual identity strong: dark theme, red/cyan glow, cinematic cover image, hover animations, profile/contact sections, downloads area, collections gallery, and a custom Home experience built around **Lethal Crimson**.
 
 ---
 
@@ -60,7 +60,48 @@ File:
 index.html
 ```
 
-Use it later for your full personal website.
+The Home contains the main visual identity of the site:
+
+```txt
+YAKSHA
+Lethal Crimson intro
+Expand button
+Reveal button
+cinematic hero animation
+```
+
+### Home interaction
+
+The Home has two main buttons:
+
+```txt
+Expand
+Reveal
+```
+
+#### Expand
+
+Opens the full **Lethal Crimson** reading panel.
+
+The full text is not left permanently exposed on the Home. The Home keeps a shorter preview, and the complete text appears inside a controlled modal-style reading container.
+
+#### Reveal
+
+Starts the cinematic hero sequence.
+
+During this sequence:
+
+```txt
+1. The page scroll is temporarily locked.
+2. Header and footer are softly pushed/hidden.
+3. The hero content fades out.
+4. The hero container expands inside the body area.
+5. The background image becomes more present.
+6. Short text phrases appear over a subtle horizontal band.
+7. The scene returns smoothly to the normal Home state.
+```
+
+The Reveal sequence is intentionally not a true fullscreen takeover. It remains part of the page layout and avoids hiding the browser cursor or replacing the whole window.
 
 ---
 
@@ -89,14 +130,7 @@ Search inside the file for:
 <div class="links-grid">
 ```
 
-Then replace:
-
-```txt
-https://simplex.chat/
-#
-https://github.com/Yaksha-Null-X
-mailto:yourmail@example.com
-```
+Then replace the corresponding links.
 
 ---
 
@@ -110,7 +144,7 @@ File:
 collections/index.html
 ```
 
-This is where you can publish your wallpapers, images, visual sets or curated artwork with detailed descriptions.
+This is where you can publish wallpapers, images, visual sets or curated artwork with detailed descriptions.
 
 ---
 
@@ -125,6 +159,62 @@ downloads/index.html
 ```
 
 Use this section for downloadable files such as PDFs, ZIP files, text files, keys, guides, releases or resources.
+
+---
+
+# How to edit the Home text
+
+Open:
+
+```txt
+index.html
+```
+
+The short Home preview is inside the Home hero section. Look for the paragraph with:
+
+```html
+class="lc-home-preview"
+```
+
+The full reading text is inside the Lethal modal. Look for:
+
+```html
+class="lethal-modal-text"
+```
+
+At the end of the full reading section there is a signature area:
+
+```txt
+by Yaksha
+```
+
+Use that area for the author signature or final credit.
+
+---
+
+# How to edit the Reveal sequence
+
+The Reveal sequence is controlled by:
+
+```txt
+assets/site.js
+assets/site.css
+```
+
+In JavaScript, look for the Reveal-related logic. It controls the order of the scene phrases and timing.
+
+The current narrative sequence is:
+
+```txt
+¿Lo ves?
+ES...
+Es a lo que yo llamo
+Lethal Crimson
+```
+
+To change the words, edit only the phrase text in `assets/site.js`.
+
+To change visual behavior, edit the related classes in `assets/site.css`.
 
 ---
 
@@ -243,31 +333,6 @@ The `src` displays the preview inside the card.
 
 ---
 
-## Step 5: write a strong description
-
-Good description example:
-
-```txt
-A dark cyberpunk skyline with saturated red accents, cold cyan reflections,
-and a nocturnal atmosphere. Designed as a desktop wallpaper with strong contrast
-and a cinematic visual mood.
-```
-
-Recommended metadata:
-
-```txt
-Type
-Resolution
-Palette
-Mood
-Format
-Status
-```
-
-You can add or remove metadata rows.
-
----
-
 # How to add downloadable files
 
 ## Step 1: put files here
@@ -365,7 +430,7 @@ Main color variables are at the top:
 }
 ```
 
-Change these to modify the entire theme.
+Change these to modify the general theme.
 
 ---
 
@@ -381,16 +446,19 @@ floating avatar
 slow cover animation
 gallery card animation
 panel glow drift
+Lethal Crimson reading modal
+Reveal cinematic hero sequence
 ```
 
-Performance is maintained because animations use:
+Performance is maintained because most animations use:
 
 ```txt
 transform
 opacity
+filter, only where visually necessary
 ```
 
-These are generally much smoother than animating:
+For smoother motion, avoid animating layout-heavy properties unless required:
 
 ```txt
 width
@@ -400,6 +468,8 @@ left
 margin
 padding
 ```
+
+The Reveal sequence may temporarily adjust layout classes, but the visual movement should remain smooth and controlled.
 
 ---
 
@@ -430,6 +500,8 @@ Desktop: 3 columns
 Tablet: 2 columns
 Phone: 1 column
 ```
+
+The Reveal sequence is designed to stay inside the page body and preserve visual proportion on different screens.
 
 ---
 
@@ -478,6 +550,13 @@ style.css
 script.js
 ```
 
+The current project uses:
+
+```txt
+assets/site.css
+assets/site.js
+```
+
 ---
 
 # GitHub Pages settings
@@ -510,9 +589,9 @@ Enforce HTTPS
 Keep the project simple:
 
 ```txt
-HTML = structure
+HTML = structure and content
 CSS = design and animation
-JS = small interaction
+JS = interaction and scene timing
 ```
 
 Avoid adding heavy frameworks unless the site really needs them.
